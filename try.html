@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stylish Scroll Effect</title>
+  <style>
+    /* General Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #141e30, #243b55);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Section Styling */
+    .section {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .section h1 {
+      font-size: 4rem;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease-out;
+    }
+
+    .section img {
+      width: 80%;
+      max-width: 500px;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 1s ease-out;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Scroll Animation Class */
+    .visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px 30px;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .navbar h2 {
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 1rem;
+      padding: 8px 15px;
+      border: 2px solid #fff;
+      border-radius: 25px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .navbar a:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <h2>Stylish Page</h2>
+    <nav>
+      <a href="#section1">Home</a>
+      <a href="#section2">Gallery</a>
+      <a href="#section3">Contact</a>
+    </nav>
+  </div>
+
+  <!-- Sections -->
+  <div id="section1" class="section">
+    <div>
+      <h1>Welcome to Stylish Page</h1>
+      <img src="https://via.placeholder.com/500" alt="Placeholder">
+    </div>
+  </div>
+  <div id="section2" class="section">
+    <div>
+      <h1>Our Gallery</h1>
+      <img src="https://via.placeholder.com/500/ff7f7f" alt="Gallery Image">
+    </div>
+  </div>
+  <div id="section3" class="section">
+    <div>
+      <h1>Contact Us</h1>
+      <img src="https://via.placeholder.com/500/7fffd4" alt="Contact Image">
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2024 Stylish Page. All rights reserved.
+  </footer>
+
+  <!-- JavaScript for Scroll Animations -->
+  <script>
+    const sections = document.querySelectorAll('.section div');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.querySelector('h1').classList.add('visible');
+            entry.target.querySelector('img').classList.add('visible');
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  </script>
+</body>
+</html>
